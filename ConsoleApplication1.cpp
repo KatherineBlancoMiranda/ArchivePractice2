@@ -15,6 +15,7 @@ int calcula_puntuacion(const vector<int>& puestos)
 		if (puesto > 0 && puesto < puntos.size() + 1)
 			suma += puntos[puesto - 1];
 	return suma;
+
 }
 
 void puntuacion(vector<string>& pilotos, vector<int>& puntos, string nombre_fichero)
@@ -52,6 +53,9 @@ void puntuacion(vector<string>& pilotos, vector<int>& puntos, string nombre_fich
 			while  (pos = s_puestos.find(" ")!= string::npos) {
 				if (pos == string::npos)
 					pos = s_puestos.find(";");
+				puesto = atoi(s_puestos.substr(0, pos).c_str());
+				s_puestos.erase(0, pos + 1);//se elimina de la cadena de puestos el dato extraído
+				puestos.push_back(puesto);
 				if (pos != string::npos) {
 					puesto = atoi(s_puestos.substr(0, pos).c_str());
 					s_puestos.erase(0, pos + 1);//se elimina de la cadena de puestos el dato extraído
